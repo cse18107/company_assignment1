@@ -1,8 +1,1 @@
-[
-  {
-    "username": "saikatmaity",
-    "password": "$2a$10$fUTe0rCqAuUtJ2qD8Ol9uecW.8DaMGpxwHdxbht.NaVZbKFSSXJDq",
-    "firstname": "SSDEE",
-    "lastname": "Maity"
-  }
-]
+[{"username":"saikatmaity","password":"$2a$10$fUTe0rCqAuUtJ2qD8Ol9uecW.8DaMGpxwHdxbht.NaVZbKFSSXJDq","firstname":"SSDEE","lastname":"Maity"},{"username":"soumodeepmaity","password":"$2a$10$fxZ5KRz0vGrM2cuu80Fwh.J16DaEZ44NY2gN0OdFqqbVJuUYGDG/6","fname":"soumodeep","lname":"maity"},{"username":"soumodeepmaitye","password":"$2a$10$vi1P4DOMs4cP6KLw8iA4V.zVIIvZ0J9zJj8irW3hZUXDIlBc1aZf6","fname":"soumodeep","lname":"maity"},{"username":"soumodeepmaityes","password":"$2a$10$oVTAiecoz7fKZynuGfXG3e7BbFlxAIBKLqcH1DLPm3xPe92cqQCyS","fname":"soumodeep","lname":"Maity"}]

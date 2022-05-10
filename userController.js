@@ -13,13 +13,21 @@ let User = JSON.parse(
 )
 
 const getUser= (req,res) => {
-    console.log(req);
 
     const token = req.headers.authorization.split(" ")[1];
 
-    console.log(token);
 
-    const decode = jwt.verify(token, process.env.JWT_SECRET_KEY);
+    let decode ;
+
+    try{
+         decode = jwt.verify(token, process.env.JWT_SECRET_KEY);
+    }catch{
+        res.status(401).json({
+            result: false,
+            error: "JWT Verification Failed"
+        })
+    }
+   
 
     const username = decode.username
 
@@ -40,11 +48,11 @@ const getUser= (req,res) => {
 const signup = async (req,res) => {
     let user = req.body;
 
-    let {username,password,firstname,lastname} = user;
+    let {username,password,fname,lname} = user;
 
 
 
-    if(!password || !username || !firstname || !lastname || password.split(" ").join("").length< 0){
+    if(!password || !username || !fname || !lname || password.split(" ").join("").length< 0){
         return res.status(404).json({
             result:false,
             error:"field can`t be empty",
@@ -56,35 +64,35 @@ const signup = async (req,res) => {
     });
 
     if(existUser){
-        return res.status(404).json({
+        return res.status(400).json({
             result:false,
             error:"username already exist",
         })
     }
 
     if(!checkUsername(username)){
-        return res.status(404).json({
+        return res.status(400).json({
             result:false,
             error:'username check failed'
         })
     }
 
     if(!checkPassword(password)){
-        return res.status(404).json({
+        return res.status(400).json({
             result:false,
             error:"password check failed",
         })
     }
 
-    if(!checkFirstLastName(firstname)){
-        return res.status(404).json({
+    if(!checkFirstLastName(fname)){
+        return res.status(400).json({
             result:false,
             error:"fname or lname check failed",
         })
     }
 
-    if(!checkFirstLastName(lastname)){
-        return res.status(404).json({
+    if(!checkFirstLastName(lname)){
+        return res.status(400).json({
             result:false,
             error:"fname or lname check failed",
         })
@@ -97,7 +105,8 @@ const signup = async (req,res) => {
     fs.writeFileSync(`${__dirname}/User.json`,JSON.stringify(User))
 
     res.status(200).json({
-        users:User
+        result: true,
+        message: "SignUp success. Please proceed to Signin"
     });
 };
 
@@ -105,8 +114,6 @@ const signin = async (req,res) => {
     const user = req.body;
 
     const {username, password} = user;
-
-    console.log(user);
 
     if(!password || !username || password.split(" ").join("").length< 0){
         return res.status(404).json({
