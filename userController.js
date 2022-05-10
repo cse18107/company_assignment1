@@ -38,8 +38,8 @@ const getUser= (req,res) => {
     res.status(200).json({
         result:true,
         data:{
-            fname:user.firstname,
-            lname:user.lastname,
+            fname:user.fname,
+            lname:user.lname,
             password:user.password
         }
     })
